@@ -30,6 +30,7 @@
 import _ from 'lodash';
 import Team from '../team';
 import * as filters from '../filters';
+import event from '../event';
 
 export default {
   name: 'AppComponent',
@@ -68,8 +69,8 @@ export default {
   },
   methods: {
     showNewGame() {
-      this.$parent.showView('newGame');
-      this.$parent.$children[1].initNewGame(this.teams);
+      event.$emit('showNewGame');
+      event.$emit('getTeams', this.teams);
     },
     sortBy(column) {
       this.order.keys = column;

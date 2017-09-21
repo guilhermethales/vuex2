@@ -15,9 +15,19 @@
 <script>
 import TeamList from './TeamList';
 import CreateGame from './CreateGame';
+import event from '../event';
 
 export default {
   name: 'AppComponent',
+  mounted() {
+    event.$on('showTeamList', () => {
+      this.view = 'table';
+    });
+
+    event.$on('showNewGame', () => {
+      this.view = 'newGame';
+    });
+  },
   data() {
     return {
       view: 'table'

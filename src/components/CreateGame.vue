@@ -22,8 +22,15 @@
 </template>
 
 <script>
+import event from '../event';
+
 export default {
   name: 'CreateGame',
+  mounted() {
+    event.$on('getTeams', (teams) => {
+      this.initNewGame(teams);
+    });
+  },
   data() {
     return {
       newGame: {
@@ -44,7 +51,7 @@ export default {
       const goalsHome = +this.newGame.home.goals;
       const goalsOutside = +this.newGame.outside.goals;
       this.newGame.home.team.endGame(adversaryTeam, goalsHome, goalsOutside);
-      this.$parent.showView('table');
+      event.$emit('showTeamList');
     },
     initNewGame(teams) {
       const indexHome = Math.floor(Math.random() * 20);
