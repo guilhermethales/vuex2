@@ -16,6 +16,7 @@
 import TeamList from './TeamList';
 import CreateGame from './CreateGame';
 import event from '../event';
+import store from '../store';
 
 export default {
   name: 'AppComponent',
@@ -28,10 +29,10 @@ export default {
       this.view = 'newGame';
     });
   },
-  data() {
-    return {
-      view: 'table'
-    };
+  computed: {
+    view() {
+      return store.state.view;
+    }
   },
   components: {
     TeamList, CreateGame
